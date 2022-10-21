@@ -1,12 +1,12 @@
 import React from "react";
-export function Header({ getCatFacts }) {
+export function Header({ getRandomFacts, favouriteFacts, showForm }) {
   return (
     <header className="header">
       <div>
-        <button onClick={getCatFacts}>Get cat facts</button>
+        <button onClick={getRandomFacts}>Get Cat Facts</button>
       </div>
-      <button>Create cat fact</button>
-      <button>Favourite facts</button>
+      <button onClick={showForm}>Create Cat Fact</button>
+      <button onClick={favouriteFacts}>Favourite Facts</button>
     </header>
   );
 }
