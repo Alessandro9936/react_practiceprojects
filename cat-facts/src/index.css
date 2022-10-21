@@ -1,0 +1,87 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Quicksand";
+  padding: 2rem;
+}
+
+h1 {
+  color: rgb(251, 81, 81);
+}
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header {
+  display: flex;
+  gap: 2rem;
+  margin-block: 2rem;
+}
+
+.header button {
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+
+  padding: 0.8rem;
+  background-color: rgb(38, 179, 249);
+
+  font-family: inherit;
+  font-weight: bold;
+  font-size: 1rem;
+  color: white;
+}
+
+.cat-facts {
+  text-align: center;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  min-width: 40%;
+  max-width: 60rem;
+}
+
+.cat-facts li {
+  border-radius: 20px;
+  padding: 1rem;
+  box-shadow: 0 0 0.2rem 0.1rem rgb(38, 179, 249, 0.2);
+}
+
+.cringe-cat {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.fact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.fact button {
+  width: fit-content;
+
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+
+  padding: 0.4rem;
+  background-color: rgb(38, 179, 249);
+
+  font-family: inherit;
+  font-weight: bold;
+  font-size: 1rem;
+  color: white;
+}
