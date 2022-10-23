@@ -1,0 +1,20 @@
+.game-grid__cell {
+  cursor: pointer;
+  background-color: var(--modal-color);
+  border-radius: var(--radius-10);
+  box-shadow: 0rem 0.3rem 0 0 var(--shadows);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.game-grid__cell:active {
+  box-shadow: none;
+  transform: translateY(0.3rem);
+}
+
+.game-grid__cell img {
+  display: block;
+  width: 50px;
+}

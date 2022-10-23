@@ -1,0 +1,111 @@
+.game-container {
+  min-width: 450px;
+
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+
+  transform: translate(-50%, 50%);
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.commands {
+  display: flex;
+  align-items: center;
+}
+
+.commands__options {
+  display: flex;
+  align-items: center;
+}
+
+.commands__turn {
+  color: var(--button-color);
+  font-weight: bold;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+
+  background-color: var(--modal-color);
+  padding: 0.5rem 2rem;
+
+  border-radius: var(--radius-10);
+  box-shadow: 0rem 0.2rem 0 0 var(--shadows);
+
+  margin-left: 7rem;
+}
+
+.commands__turn img {
+  display: inline-block;
+  width: 16px;
+}
+
+.commands__restart {
+  cursor: pointer;
+  background-color: var(--button-color);
+  padding: 0.5rem;
+  border-radius: var(--radius-10);
+  box-shadow: 0rem 0.2rem 0 0 var(--button-shadows);
+
+  margin-left: auto;
+}
+
+.commands__restart:active {
+  box-shadow: none;
+  transform: translateY(0.3rem);
+}
+
+.commands__restart img {
+  display: block;
+  width: 18px;
+}
+
+.game-grid {
+  height: 28rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 1.6rem;
+}
+
+.scores {
+  color: var(--background-text-color);
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+}
+.scores__player-one,
+.secores__pairs,
+.secores__player-two {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  align-items: center;
+  padding: 0.2rem 0.4rem;
+
+  border-radius: var(--radius-10);
+}
+
+.scores__player-one {
+  background-color: var(--light-blue);
+  box-shadow: 0rem 0.2rem 0 0 var(--light-blue-shadow);
+}
+.secores__pairs {
+  background-color: var(--button-color);
+  box-shadow: 0rem 0.2rem 0 0 var(--button-shadows);
+}
+.secores__player-two {
+  background-color: var(--yellow);
+  box-shadow: 0rem 0.2rem 0 0 var(--yellow-shadow);
+}
+
+.score {
+  font-weight: bold;
+  font-size: 1.4rem;
+}
