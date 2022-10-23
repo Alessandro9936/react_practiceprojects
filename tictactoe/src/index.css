@@ -1,0 +1,353 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@500;700&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --background-text-color: #192a32;
+  --shadows: #102129;
+  --button-color: #a8bec9;
+  --button-shadows: #738a96;
+  --modal-color: #1f3540;
+  --overlay-color: #0c1319;
+  --yellow: #f1b137;
+  --yellow-shadow: #d08b0d;
+  --light-blue: #31c4be;
+  --light-blue-shadow: #208888;
+
+  --radius-5: 5px;
+  --radius-10: 10px;
+  --radius-20: 20px;
+}
+
+body {
+  font-family: "Outfit";
+  background-color: var(--background-text-color);
+  color: var(--background-text-color);
+
+  width: 100vw;
+
+  font-size: 1rem;
+}
+
+button {
+  cursor: pointer;
+}
+
+/*STARTING*/
+.start {
+  min-width: 450px;
+
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+
+  transform: translate(-50%, 50%);
+}
+
+.choose-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+
+  padding: 1rem;
+  border-radius: var(--radius-20);
+
+  color: var(--button-color);
+  background-color: var(--modal-color);
+
+  margin-bottom: 2rem;
+
+  box-shadow: 0rem 0.3rem 0 0 var(--shadows);
+}
+
+.choose-container > p:first-of-type {
+  font-weight: bold;
+}
+
+.choose-container > p:last-of-type {
+  font-size: 0.8rem;
+}
+
+.chooses {
+  background-color: var(--background-text-color);
+  width: 100%;
+  display: flex;
+  align-items: center;
+
+  border-radius: var(--radius-10);
+  margin-top: 0.5rem;
+}
+
+.chooses div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex: 1;
+  text-align: center;
+  font-size: 2rem;
+  cursor: pointer;
+  font-weight: bold;
+
+  border-radius: var(--radius-10);
+  margin: 5px;
+
+  transition: background-color 0.1s ease-in;
+}
+
+.chooses div:hover,
+.chooses .active {
+  color: var(--background-text-color);
+  background-color: var(--button-color);
+}
+
+.opponent-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.opponent-container button {
+  font: inherit;
+  font-weight: bold;
+
+  padding: 0.8rem;
+
+  border-radius: var(--radius-10);
+
+  border: none;
+}
+
+.yellow-button {
+  background-color: var(--yellow);
+  box-shadow: 0rem 0.3rem 0 0 var(--yellow-shadow);
+}
+.light-blue-button {
+  background-color: var(--light-blue);
+  box-shadow: 0rem 0.3rem 0 0 var(--light-blue-shadow);
+}
+
+.yellow-button:active,
+.light-blue-button:active {
+  box-shadow: none;
+  transform: translateY(0.3rem);
+}
+
+/* --------------------------------------------------*/
+.game-container {
+  min-width: 450px;
+
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+
+  transform: translate(-50%, 50%);
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.commands {
+  display: flex;
+  align-items: center;
+}
+
+.commands__options {
+  display: flex;
+  align-items: center;
+}
+
+.commands__turn {
+  color: var(--button-color);
+  font-weight: bold;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+
+  background-color: var(--modal-color);
+  padding: 0.5rem 2rem;
+
+  border-radius: var(--radius-10);
+  box-shadow: 0rem 0.2rem 0 0 var(--shadows);
+
+  margin-left: 7rem;
+}
+
+.commands__turn img {
+  display: inline-block;
+  width: 16px;
+}
+
+.commands__restart {
+  cursor: pointer;
+  background-color: var(--button-color);
+  padding: 0.5rem;
+  border-radius: var(--radius-10);
+  box-shadow: 0rem 0.2rem 0 0 var(--button-shadows);
+
+  margin-left: auto;
+}
+
+.commands__restart:active {
+  box-shadow: none;
+  transform: translateY(0.3rem);
+}
+
+.commands__restart img {
+  display: block;
+  width: 18px;
+}
+
+.game-grid {
+  height: 28rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 1.6rem;
+}
+
+.game-grid__cell {
+  cursor: pointer;
+  background-color: var(--modal-color);
+  border-radius: var(--radius-10);
+  box-shadow: 0rem 0.3rem 0 0 var(--shadows);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.game-grid__cell:active {
+  box-shadow: none;
+  transform: translateY(0.3rem);
+}
+
+.game-grid__cell img {
+  display: block;
+  width: 50px;
+}
+
+.scores {
+  color: var(--background-text-color);
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+}
+.scores__player-one,
+.secores__pairs,
+.secores__player-two {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  align-items: center;
+  padding: 0.2rem 0.4rem;
+
+  border-radius: var(--radius-10);
+}
+
+.scores__player-one {
+  background-color: var(--light-blue);
+  box-shadow: 0rem 0.2rem 0 0 var(--light-blue-shadow);
+}
+.secores__pairs {
+  background-color: var(--button-color);
+  box-shadow: 0rem 0.2rem 0 0 var(--button-shadows);
+}
+.secores__player-two {
+  background-color: var(--yellow);
+  box-shadow: 0rem 0.2rem 0 0 var(--yellow-shadow);
+}
+
+.score {
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+
+/*  ------------------------------------------ */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--overlay-color);
+  z-index: 1;
+  opacity: 60%;
+}
+
+.modal {
+  position: absolute;
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+
+  background-color: var(--modal-color);
+  width: 100%;
+
+  top: 50%;
+  transform: translateY(-50%);
+
+  padding-block: 2rem;
+}
+
+.winner {
+  color: var(--button-color);
+}
+
+.next-round-starter {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.next-round-starter img {
+  display: block;
+  width: 32px;
+}
+
+.next-round-starter p {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.blue-light {
+  color: var(--light-blue);
+}
+
+.options button {
+  font-family: inherit;
+  font-weight: bold;
+  padding: 0.6rem;
+  border: none;
+  border-radius: var(--radius-5);
+  color: var(--background-text-color);
+}
+
+.options button:first-of-type {
+  background-color: var(--button-color);
+  margin-right: 0.8rem;
+  box-shadow: 0rem 0.2rem 0 0 var(--button-shadows);
+}
+
+.options button:last-of-type {
+  background-color: var(--yellow);
+  margin-right: 0.8rem;
+  box-shadow: 0rem 0.2rem 0 0 var(--yellow-shadow);
+}
+
+.options button:active {
+  box-shadow: none;
+  transform: translateY(0.3rem);
+}
