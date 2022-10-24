@@ -1,17 +1,66 @@
 import React from "react";
-export function Modal({ x }) {
-  return (
-    <div className="modal">
-      <p className="winner">YOU WON!</p>
-      <div className="next-round-starter">
-        <img src={x} alt="" />
-        <p className="blue-light">TAKES THE ROUND</p>
-      </div>
+import x64 from "../assets/x64.png";
+import o64 from "../assets/o64.png";
+import classes from "./styles/Modal.module.css";
 
-      <div className="options">
-        <button className="back">QUIT</button>
-        <button className="next">NEXT ROUND</button>
-      </div>
-    </div>
+export function Modal({ winner, player1, nextRound, result }) {
+  const winnerPlayer = winner === player1 ? "PLAYER 1" : "PLAYER 2";
+
+  const reloadGame = () => {
+    window.location.reload();
+  };
+
+  const startNewRound = () => {
+    nextRound(winner || "x");
+  };
+
+  return (
+    <>
+      {result === "win" && (
+        <div className={classes.modal}>
+          <p className={classes.winner}>{winnerPlayer} WON!</p>
+          <div className={classes["next-round-starter"]}>
+            <img src={winner === "x" ? x64 : o64} alt="" />
+
+            <p
+              className={`${
+                winner === "x" ? classes["blue-light"] : classes.yellow
+              }`}
+            >
+              TAKES THE ROUND
+            </p>
+          </div>
+
+          <div className={classes.options}>
+            <button className={classes.back} onClick={reloadGame}>
+              QUIT
+            </button>
+            <button className={classes.next} onClick={startNewRound}>
+              NEXT ROUND
+            </button>
+          </div>
+        </div>
+      )}
+
+      {result === "pair" && (
+        <div className={classes.modal}>
+          <p className={classes.winner}>PAIR!</p>
+          <div className={classes["next-round-starter"]}>
+            <img src={x64} alt="" />
+
+            <p className={classes["blue-light"]}>TAKES THE ROUND</p>
+          </div>
+
+          <div className={classes.options}>
+            <button className={classes.back} onClick={reloadGame}>
+              QUIT
+            </button>
+            <button className={classes.next} onClick={startNewRound}>
+              NEXT ROUND
+            </button>
+          </div>
+        </div>
+      )}
+    </>
   );
 }

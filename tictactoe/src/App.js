@@ -25,7 +25,7 @@ function App() {
           hoveringPick={hoveringPick}
         />
       )}
-      {player2 && <GameContainer />}
+      {player2 && <GameContainer player1={player1} player2={player2} />}
     </>
   );
 }

@@ -1,4 +1,5 @@
 import React from "react";
-export function Overlay({}) {
-  return <div className="overlay"></div>;
+import classes from "./styles/Overlay.module.css";
+export function Overlay() {
+  return <div className={classes.overlay}></div>;
 }
