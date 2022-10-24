@@ -43,29 +43,3 @@
 .yellow {
   color: var(--yellow);
 }
-
-.options button {
-  font-family: inherit;
-  font-weight: bold;
-  padding: 0.6rem;
-  border: none;
-  border-radius: var(--radius-5);
-  color: var(--background-text-color);
-}
-
-.options button:first-of-type {
-  background-color: var(--button-color);
-  margin-right: 0.8rem;
-  box-shadow: 0rem 0.2rem 0 0 var(--button-shadows);
-}
-
-.options button:last-of-type {
-  background-color: var(--yellow);
-  margin-right: 0.8rem;
-  box-shadow: 0rem 0.2rem 0 0 var(--yellow-shadow);
-}
-
-.options button:active {
-  box-shadow: none;
-  transform: translateY(0.3rem);
-}

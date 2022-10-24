@@ -8,37 +8,60 @@ import { Modal } from "./Modal";
 
 import { checkResult, checkDraw } from "./helpers/checkWinning";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import { Reload } from "./Reload";
 
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "change-turn": {
+      return { ...state, turn: action.turn };
+    }
+    case "score-player1": {
+      return { ...state, player1Score: state.player1Score + 1 };
+    }
+    case "score-player2": {
+      return { ...state, player2Score: state.player2Score + 1 };
+    }
+    case "score-pair": {
+      return { ...state, pairs: state.pairs + 1 };
+    }
+    default:
+  }
+};
+
+const initialGameState = {
+  turn: "x",
+  player1Score: 0,
+  player2Score: 0,
+  pairs: 0,
+};
+
 export function GameContainer({ player1, player2 }) {
+  const [gameState, dispatch] = useReducer(reducer, initialGameState);
+
   const [grid, setGrid] = useState(new Array(9).fill(""));
-  const [turn, setTurn] = useState("x");
+  const [result, setResult] = useState(null);
 
   const [justLoaded, setJustLoaded] = useState(true);
-  const [result, setResult] = useState(null);
-  const [player1Score, setPlayer1Score] = useState(0);
-  const [player2Score, setPlayer2Score] = useState(0);
-  const [pairs, setPairs] = useState(0);
   const [showReload, setShowReload] = useState(false);
 
   useEffect(() => {
-    const winner = checkResult(grid, turn);
+    const winner = checkResult(grid, gameState.turn);
     const draw = checkDraw(grid);
 
     if (winner) {
       setResult("win");
 
-      turn === player1
-        ? setPlayer1Score((prev) => prev + 1)
-        : setPlayer2Score((prev) => prev + 1);
+      gameState.turn === player1
+        ? dispatch({ type: "score-player1" })
+        : dispatch({ type: "score-player2" });
 
       return;
     }
 
     if (draw) {
       setResult("pair");
-      setPairs((prev) => prev + 1);
+      dispatch({ type: "score-pair" });
       return;
     }
 
@@ -46,20 +69,20 @@ export function GameContainer({ player1, player2 }) {
       return setJustLoaded(false);
     }
 
-    setTurn((prev) => (prev === "x" ? "o" : "x"));
+    dispatch({ type: "change-turn", turn: gameState.turn === "x" ? "o" : "x" });
   }, [grid]);
 
   const handleCellClick = (clickIndex) => {
     setGrid((prev) =>
       prev.map((cell, cellIndex) => {
-        return clickIndex === cellIndex ? (cell = turn) : cell;
+        return clickIndex === cellIndex ? (cell = gameState.turn) : cell;
       })
     );
   };
 
   const nextRound = (startingSign) => {
     setGrid(new Array(9).fill(""));
-    setTurn(startingSign);
+    dispatch({ type: "change-turn", turn: startingSign });
     setJustLoaded(true);
     setResult(null);
   };
@@ -79,7 +102,7 @@ export function GameContainer({ player1, player2 }) {
               <O />
             </div>
             <div className={classes["commands__turn"]}>
-              {turn === "x" ? <X /> : <O />}
+              {gameState.turn === "x" ? <X /> : <O />}
               <span>TURN</span>
             </div>
             <div
@@ -94,7 +117,7 @@ export function GameContainer({ player1, player2 }) {
               <GridCell
                 key={i}
                 index={i}
-                turn={turn}
+                turn={gameState.turn}
                 cellClick={handleCellClick}
               />
             ))}
@@ -102,22 +125,22 @@ export function GameContainer({ player1, player2 }) {
           <div className={classes.scores}>
             <div className={classes["scores__player-one"]}>
               <span>{player1.toUpperCase()} (PLAYER 1)</span>
-              <span className={classes.score}>{player1Score}</span>
+              <span className={classes.score}>{gameState.player1Score}</span>
             </div>
             <div className={classes["secores__pairs"]}>
               <span>TIES</span>
-              <span className={classes.score}>{pairs}</span>
+              <span className={classes.score}>{gameState.pairs}</span>
             </div>
             <div className={classes["secores__player-two"]}>
               <span>{player2.toUpperCase()} (PLAYER 2)</span>
-              <span className={classes.score}>{player2Score}</span>
+              <span className={classes.score}>{gameState.player2Score}</span>
             </div>
           </div>
         </div>
       )}
       {result === "win" && (
         <Modal
-          winner={turn}
+          winner={gameState.turn}
           player1={player1}
           nextRound={nextRound}
           result={result}

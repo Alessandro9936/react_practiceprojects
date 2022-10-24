@@ -1,3 +1,4 @@
+import { OptionButtons } from "./OptionButtons";
 import React from "react";
 import x64 from "../assets/x64.png";
 import o64 from "../assets/o64.png";
@@ -31,14 +32,10 @@ export function Modal({ winner, player1, nextRound, result }) {
             </p>
           </div>
 
-          <div className={classes.options}>
-            <button className={classes.back} onClick={reloadGame}>
-              QUIT
-            </button>
-            <button className={classes.next} onClick={startNewRound}>
-              NEXT ROUND
-            </button>
-          </div>
+          <OptionButtons
+            reloadGame={reloadGame}
+            startNewRound={startNewRound}
+          />
         </div>
       )}
 
@@ -51,14 +48,10 @@ export function Modal({ winner, player1, nextRound, result }) {
             <p className={classes["blue-light"]}>TAKES THE ROUND</p>
           </div>
 
-          <div className={classes.options}>
-            <button className={classes.back} onClick={reloadGame}>
-              QUIT
-            </button>
-            <button className={classes.next} onClick={startNewRound}>
-              NEXT ROUND
-            </button>
-          </div>
+          <OptionButtons
+            reloadGame={reloadGame}
+            startNewRound={startNewRound}
+          />
         </div>
       )}
     </>
