@@ -4,28 +4,28 @@ import { StartModal } from "./components/StartModal";
 
 function App() {
   const [hoveringPick, setHoveringPick] = useState("x");
-  const [player1, setPlayer1] = useState({ player: "player", sign: "x" });
-  const [player2, setPlayer2] = useState({ player: "", sign: "" });
+  const [player1, setPlayer1] = useState("x");
+  const [player2, setPlayer2] = useState("");
 
   const handleHoveringPick = () => {
     setHoveringPick((prev) => (prev === "x" ? "o" : "x"));
   };
 
-  const handleSetPlayerPick = (opponent) => {
-    setPlayer1((prev) => ({ ...prev, sign: hoveringPick }));
-    setPlayer2({ player: opponent, sign: hoveringPick === "x" ? "o" : "x" });
+  const handleSetPlayerPick = () => {
+    setPlayer1(hoveringPick);
+    setPlayer2(hoveringPick === "x" ? "o" : "x");
   };
 
   return (
     <>
-      {!player2.sign && (
+      {!player2 && (
         <StartModal
           setHoveringPick={handleHoveringPick}
           setPick={handleSetPlayerPick}
           hoveringPick={hoveringPick}
         />
       )}
-      {player2.sign && <GameContainer />}
+      {player2 && <GameContainer />}
     </>
   );
 }
